@@ -7,7 +7,7 @@ authors = [
   {name = "Luis Gerardo Fosado Baños", email = "yeralway1@gmail.com"},
 ]
 dependencies = [
-  "pydantic==2.10.6",
+  "pydantic==2.5.3",
 ]
 description = "traxion Domain Python"
 license = {text = "MIT"}
