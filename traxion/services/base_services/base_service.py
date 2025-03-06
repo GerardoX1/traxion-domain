@@ -193,3 +193,40 @@ class BaseService(BaseServiceABC, Generic[BaseModelT]):
         if limit:
             kwargs.update({"limit": limit})
         return list(query.get_all(**kwargs))
+
+    def _query_paginated(
+        self,
+        page: int = 1,
+        limit: int = 50,
+        and_conditions: Optional[List[tuple]] = None,
+        or_conditions: Optional[List[tuple]] = None,
+        sort: Optional[List[Tuple[str, int]]] = None,
+        projection: Optional[List[str]] = None,
+    ) -> Tuple[int, List[dict]]:
+        """Execute a paginated query and return a tuple containing the
+        count of total matching documents and a list of documents for
+        the specified page.
+
+        Parameters:
+            page (int): The page number for paginated results
+                (default is 1).
+            limit (int): The maximum number of documents per page
+                (default is 50).
+            and_conditions (Optional[List[tuple]]): List of tuples
+                representing AND conditions.
+            or_conditions (Optional[List[tuple]]): List of tuples
+                representing OR conditions.
+            sort (Optional[List[Tuple[str, int]]]): List of tuples
+                representing sorting criteria.
+            projection (Optional[List[str]]): List of fields to be
+                included in the result.
+
+        Returns:
+            Tuple[int, List[dict]]: A tuple containing the count of
+                total matching documents and the list of documents for
+                the specified page.
+        """
+        query = self.__base_query(and_conditions, or_conditions)
+        return query.count(), list(
+            query.paginate(page, limit, sort=sort, projection=projection)
+        )
