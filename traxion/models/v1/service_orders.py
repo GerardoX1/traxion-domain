@@ -25,6 +25,6 @@ class ServiceOrderModel(BaseModel, UpdatableModel):
     version: Literal["1.0.0"] = "1.0.0"
     updated_at: PositiveInt = Field(default_factory=lambda: round(time() * 1000))
     vehicle_id: str
-    service_type: list[ServiceType]
+    service_type: ServiceType
     description: str
-    status: list[ServiceStatusType]
+    status: ServiceStatusType

@@ -22,4 +22,4 @@ class VehicleModel(BaseModel, UpdatableModel):
     model: str = Field(..., min_length=1, max_length=30)
     year: PositiveInt
     mileage: PositiveInt
-    status: list[StatusVehicle]
+    status: StatusVehicle
