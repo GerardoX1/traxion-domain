@@ -13,7 +13,7 @@ setup(
     package_data={"traxion_domain": ["*.json"]},
     python_requires=">=3.11",
     install_requires=[
-        "pydantic==2.10.6",
+        "pydantic==2.5.3",
     ],
     extras_require={
         "dev": [
