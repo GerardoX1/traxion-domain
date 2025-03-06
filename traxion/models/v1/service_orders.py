@@ -15,9 +15,10 @@ class ServiceType(str, Enum):
 
 
 class ServiceStatusType(str, Enum):
-    PREVENTIVE = "PREVENTIVE"
-    CORRECTIVE = "CORRECTIVE"
-    SCHEDULED = "SCHEDULED"
+    CREATED = "CREATED"
+    IN_PROGRESS = "IN_PROGRESS"
+    CLOSED = "CLOSED"
+    CANCELED = "CANCELED"
 
 
 class ServiceOrderModel(BaseModel, UpdatableModel):
