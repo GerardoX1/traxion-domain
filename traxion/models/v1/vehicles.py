@@ -5,6 +5,7 @@ from typing import Literal
 from pydantic import Field, PositiveInt
 
 from traxion.models.base_models.base_model import BaseModel
+from traxion.models.base_models.updatable_model import UpdatableModel
 
 
 class StatusVehicle(str, Enum):
@@ -12,7 +13,7 @@ class StatusVehicle(str, Enum):
     DEACTIVE = "DEACTIVE"
 
 
-class VehicleModel(BaseModel):
+class VehicleModel(BaseModel, UpdatableModel):
     __collection_name__: str = "vehicles"
     version: Literal["1.0.0"] = "1.0.0"
     updated_at: PositiveInt = Field(default_factory=lambda: round(time() * 1000))
